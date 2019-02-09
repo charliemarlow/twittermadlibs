@@ -2,7 +2,11 @@ from textblob import TextBlob
 
 class unique:
 	def __init__(self, tweets, user_args=1):
-		listOfTweets = tweets.split(" ")
-		for tweet in listOfTweets :
-			if( tweet.len() < 3):
-				 listOfTweets.remove(tweet)
+		self.listOfTweets = tweets.split(" ")
+		for tweet in self.listOfTweets :
+			if( len(tweet) < 4):
+				print(tweet)
+				self.listOfTweets.remove(tweet)
+	
+	def getTweetList(self):
+		return self.listOfTweets
