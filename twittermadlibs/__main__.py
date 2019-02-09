@@ -20,7 +20,6 @@ def main():
     # pass username to getTweets, return a list of words
     twitterInterface = pullTweets("realDonaldTrump")
     tweets = twitterInterface.get_tweets()
-    '''
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
 
