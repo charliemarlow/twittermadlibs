@@ -47,6 +47,9 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+#Access Tokens
+*d.csv
+
 # Translations
 *.mo
 *.pot
