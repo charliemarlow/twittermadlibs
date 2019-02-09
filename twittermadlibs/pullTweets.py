@@ -10,7 +10,7 @@ class pullTweets:
 		access keys.
 		:param username: The Twitter handle for the user
 		'''
-		file = open("AccessKeysd.csv", 'r')
+		file = open("../AccessKeysd.csv", 'r')
 		reader = csv.reader(file)
 		
 		#List order is: consumer_key, consumer_secret, access_key, access_secret
