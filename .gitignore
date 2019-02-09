@@ -48,7 +48,7 @@ coverage.xml
 .pytest_cache/
 
 #Access Tokens
-*d.txt
+*d.csv
 
 # Translations
 *.mo

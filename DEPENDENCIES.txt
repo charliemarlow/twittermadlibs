@@ -4,3 +4,4 @@
 - Textblob
 
 - pydoc
+ pandas
