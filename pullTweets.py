@@ -42,7 +42,15 @@ class pullTweets:
 		stringOfTweets = (" ").join(newListOfTweets)
 		print(stringOfTweets)
 
+	def get_profile_pic(self):
+		'''
+		Will return the URL to the profile picture of the username.
+		:return The URL to the profile picture.
+		'''
+		return ("https://twitter.com/"+self.username+"/profile_image?size=original")
+		
 
 print("Hello")
-x = pullTweets("realDonaldTrump")
+x = pullTweets("kanyewest")
 x.get_tweets()
+print(x.get_profile_pic())
