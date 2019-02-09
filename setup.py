@@ -13,7 +13,6 @@ setup(
     },
     install_requires = [
             'tweepy',
-            'textblob',
-            'pydoc3',
+            'textblob'
     ]
 )

@@ -16,10 +16,10 @@ class madlib:
         :param preFormat: the HTML formatting before the inserted word
         :param postFormat: the HTML formatting after the inserted word
         '''
-        self.wordsDict = partsOfSpeech
-        self.file = os.path.abspath(os.path.dirname(__file__)) + madlibFile
-        self.preFormat = preFormat
-        self.postFormat = postFormat
+        self.wordsDict =    partsOfSpeech
+        self.file =         os.path.abspath(os.path.dirname(__file__)) + madlibFile
+        self.preFormat =    preFormat
+        self.postFormat =   postFormat
 
     def getMadlib(self):
         '''
@@ -64,7 +64,7 @@ class madlib:
         '''
         Reads each madlib from the CSV file
         Returns it as a list where each entry is a madlib
-        :return: a list of madlibs 
+        :return: a list of madlibs
         '''
         madlibs = []
 

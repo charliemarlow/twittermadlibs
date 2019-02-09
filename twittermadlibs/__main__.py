@@ -30,6 +30,7 @@ def main():
     # pass username to getTweets, return a list of words
     twitterInterface = pullTweets("realDonaldTrump")
     tweets = twitterInterface.get_tweets()
+    profileURL = twitterInterface.get_profile_pic()
 
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
@@ -43,11 +44,11 @@ def main():
     print(tweetDict)
 
     # pass the dictionary to create madlibs, return a string
-    madlibGenerator = madlib(tweetDict, madlibFile)
+    madlibGenerator = madlib(tweetDict, madlibFile, preFormat, postFormat)
     madlibStr = madlibGenerator.createMadlib()
-    print(madlibStr)
-    # pass a string to the formatter, return an HTMLString
+
     # print the string
+    print(madlibStr)
 
 
 if __name__ == '__main__':
