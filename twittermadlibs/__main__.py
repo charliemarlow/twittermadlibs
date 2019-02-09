@@ -2,7 +2,7 @@ import sys
 from .classifyWords import classifyWords
 #from .madlib import madlib
 #from .pullTweets import pullTweets
-#from .parser import parser
+#from .unique import unique
 from textblob import TextBlob
 
 madlibFile = "../Madlibs_Template/test.csv"
@@ -11,7 +11,6 @@ def main():
     print("in main")
 
     # get username
-    '''
     print("Enter a twitter username, no @")
     username = input()
     print("username is " + username)
@@ -20,18 +19,24 @@ def main():
     twitterInterface = pullTweets(username)
     tweets = twitterInterface.get_tweets()
     print(tweets)
-    '''
 
-    # pass list of words to unique, get refinedList
-    tweets = "this is a test grateful easily very wonderful"
-    # pass refinedList to parser to get a dictionary
+    # make textblob object from tweets
     tweetBlob = TextBlob(tweets)
-    classifier = classifyWords(tweetBlob)
+
+    # unique takes TextBlob object as a param, returns new textblob
+    uniqueParser = unique(tweetBlob)
+    uniqueBlob = unique.parseTweets()
+
+
+    # pass refinedList to parser to get a dictionary
+
+    classifier = classifyWords(uniqueBlob)
     tweetDict = classifier.createWordDictionary()
     print(tweetDict)
 
-    #madlibGenerator = madlib(tweetDict, madlibFile)
-    #madlibStr = createMadlib()
+    madlibGenerator = madlib(tweetDict, madlibFile)
+    madlibStr = createMadlib()
+    print(madlibStr)
     # pass the dictionary to create madlibs, return a string
     # pass a string to the formatter, return an HTMLString
     # print the string
