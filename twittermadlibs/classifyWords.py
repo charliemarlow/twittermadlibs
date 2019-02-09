@@ -64,24 +64,6 @@ class classifyWords:
             'comparativeAdv'    : comparativeAdv,
             'superlativeAdv'    : superlativeAdv
         }
-        '''
-        # Get dict of adjectives
-        adjectives = self.getPartOfSpeech(['regularAdj', 'superlativeAdj', 'comparativeAdj'])
-
-        # Get dict of verbs
-        verbs = self.getPartOfSpeech(['presentVerb', 'pastVerb', 'gerundVerb'])
-
-        # Get dict of Adverbs
-        adverbs = self.getPartOfSpeech(['comparativeAdv', 'superlativeAdv'])
-
-        # create word_dict
-        partsOfSpeech = {
-            'noun'          : nouns,
-            'adjective'     : adjectives,
-            'verb'          : verbs,
-            'adverb'        : adverbs
-        }
-        '''
         # return word_dict
         return wordsDict
 
