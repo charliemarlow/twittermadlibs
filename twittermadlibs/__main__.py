@@ -5,9 +5,20 @@ from .pullTweets import pullTweets
 from .unique import unique
 from textblob import TextBlob
 
-madlibFile = "/../Madlibs_Templates/test.csv"
+madlibFile  = "/../Madlibs_Templates/test.csv"
+preFormat   = ""
+postFormat  = ""
 
 def main():
+    '''
+    Main driver for the twittermadlibs program
+    Passes a username to pullTweets, which returns a string of words from twitter
+    The string is then passed to unique which cleans the data
+    The clean data is then passed into a TextBlob object
+    The TextBlob is passed to classifyWords which returns a dictionary of lists
+    Each list is a different part of speech
+    This dictionary is then passed to madlib which returns a finished madlib string
+    '''
     print("in main")
     # get username
     '''

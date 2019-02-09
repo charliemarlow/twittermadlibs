@@ -2,6 +2,9 @@ from textblob import TextBlob
 
 
 class classifyWords:
+    '''
+    Controls classifying words as a part of speech 
+    '''
 
     def __init__(self, words):
         '''
