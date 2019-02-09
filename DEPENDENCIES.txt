@@ -4,4 +4,7 @@
 - Textblob
 
 - pydoc
-- pandas
+
+- os
+
+- csv
