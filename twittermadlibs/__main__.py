@@ -1,8 +1,11 @@
 import sys
 from .classifyWords import classifyWords
+#from .madlib import madlib
 #from .pullTweets import pullTweets
 #from .parser import parser
 from textblob import TextBlob
+
+madlibFile = "../Madlibs_Template/test.csv"
 
 def main():
     print("in main")
@@ -27,7 +30,8 @@ def main():
     tweetDict = classifier.createWordDictionary()
     print(tweetDict)
 
-
+    #madlibGenerator = madlib(tweetDict, madlibFile)
+    #madlibStr = createMadlib()
     # pass the dictionary to create madlibs, return a string
     # pass a string to the formatter, return an HTMLString
     # print the string

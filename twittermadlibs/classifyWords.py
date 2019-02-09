@@ -17,7 +17,7 @@ class classifyWords:
             quit()
 
         self.words = words
-        self.classifiedWords = self.classifyPartsOfSpeech()
+        self.classifiedWords = words.tags
         self.partOfSpeechArgs = {
             'singularNoun'      : ["NN", "NNP"],
             'pluralNoun'        : ["NNS", "NNPS"],
@@ -39,8 +39,32 @@ class classifyWords:
         '''
 
         # Get dict of nouns
-        nouns = self.getPartOfSpeech(['singularNoun', 'pluralNoun'])
+        #nouns = self.getPartOfSpeech(['singularNoun', 'pluralNoun'])
 
+        singularNoun =      self.getPOSList(self.partOfSpeechArgs['singularNoun'])
+        pluralNoun =        self.getPOSList(self.partOfSpeechArgs['pluralNoun'])
+        regularAdj =        self.getPOSList(self.partOfSpeechArgs['regularAdj'])
+        superlativeAdj =    self.getPOSList(self.partOfSpeechArgs['superlativeAdj'])
+        comparativeAdj =    self.getPOSList(self.partOfSpeechArgs['comparativeAdj'])
+        presentVerb =       self.getPOSList(self.partOfSpeechArgs['presentVerb'])
+        pastVerb =          self.getPOSList(self.partOfSpeechArgs['pastVerb'])
+        gerundVerb =        self.getPOSList(self.partOfSpeechArgs['gerundVerb'])
+        comparativeAdv =    self.getPOSList(self.partOfSpeechArgs['comparativeAdv'])
+        superlativeAdv =    self.getPOSList(self.partOfSpeechArgs['superlativeAdv'])
+
+        wordsDict = {
+            'singularNoun'      : singularNoun,
+            'pluralNoun'        : pluralNoun,
+            'regularAdj'        : regularAdj,
+            'superlativeAdj'    : superlativeAdj,
+            'comparativeAdj'    : comparativeAdj,
+            'presentVerb'       : presentVerb,
+            'pastVerb'          : pastVerb,
+            'gerundVerb'        : gerundVerb,
+            'comparativeAdv'    : comparativeAdv,
+            'superlativeAdv'    : superlativeAdv
+        }
+        '''
         # Get dict of adjectives
         adjectives = self.getPartOfSpeech(['regularAdj', 'superlativeAdj', 'comparativeAdj'])
 
@@ -57,9 +81,9 @@ class classifyWords:
             'verb'          : verbs,
             'adverb'        : adverbs
         }
-
+        '''
         # return word_dict
-        return partsOfSpeech
+        return wordsDict
 
     def getPartOfSpeech(self, arguments):
         '''
@@ -102,18 +126,3 @@ class classifyWords:
             partsOfSpeech = partsOfSpeech + argumentPOS
 
         return partsOfSpeech
-
-
-    def classifyPartsOfSpeech(self):
-        '''
-        Classifies words as parts of speech
-        :return: a list of tuples containing a word and part of speech
-        '''
-        return self.words.tags
-
-    def classifyNounPhrases(self):
-        '''
-        Classifies words as noun classifyNounPhrases
-        :return: a list of noun phrases
-        '''
-        return self.words.noun_phrases
