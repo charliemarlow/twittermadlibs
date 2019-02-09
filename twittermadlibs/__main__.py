@@ -1,6 +1,7 @@
 import sys
-from .classifyWords import classifyWord
-from .pullTweets import pullTweets
+from .classifyWords import classifyWords
+#from .pullTweets import pullTweets
+#from .parser import parser
 from textblob import TextBlob
 
 def main():
@@ -19,7 +20,7 @@ def main():
     '''
 
     # pass list of words to unique, get refinedList
-
+    tweets = "this is a test grateful easily very wonderful"
     # pass refinedList to parser to get a dictionary
     tweetBlob = TextBlob(tweets)
     classifier = classifyWords(tweetBlob)
