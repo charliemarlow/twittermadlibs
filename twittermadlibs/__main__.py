@@ -24,18 +24,18 @@ def main():
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
 
-    uniqueBlob = unique.parseTweets()
-
-    '''
+    uniqueStr = unique.parseTweets()
+    print(uniqueStr)
+    unique2 = " ".join(uniqueStr)
     # pass refinedList to parser to get a dictionary
-    tweetBlob = TextBlob(tweets)
+    tweetBlob = TextBlob(unique2)
     classifier = classifyWords(tweetBlob)
     tweetDict = classifier.createWordDictionary()
     print(tweetDict)
 
+    # pass the dictionary to create madlibs, return a string
     madlibGenerator = madlib(tweetDict, madlibFile)
     madlibStr = madlibGenerator.createMadlib()
-    # pass the dictionary to create madlibs, return a string
     # pass a string to the formatter, return an HTMLString
     # print the string
 
