@@ -9,6 +9,7 @@ import time
 madlibFile  = "/../Madlibs_Templates/test.csv"
 preFormat   = ""
 postFormat  = ""
+sleepMinutes = 5
 
 def main():
     '''
@@ -25,6 +26,7 @@ def main():
     # We need a requestTweets option that returns a list of 3tuple usernames
     while(True):
         # see more info in twitter docs
+        print("Getting")
         usernames = twitterInterface.getRequests()
 
         #[("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
@@ -33,7 +35,7 @@ def main():
                 print(sendingUser)
                 generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
         print("sleeping")
-        time.sleep(300)
+        time.sleep(sleepMinutes * 60)
 
 
 
@@ -41,7 +43,8 @@ def main():
 def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
     # pass username to getTweets, return a list of words
     tweets = twitterInterface.get_tweets(madlibUser)
-
+    if(tweets is None):
+        return
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
     uniqueStr = uniqueParser.cleanTweets()

@@ -39,14 +39,16 @@ class twitter:
 
         # 100 tweets to be extracted
         number_of_tweets=100
+        stringOfTweets = None
         try:
             tweets = self.api.user_timeline(username,tweet_mode="extended", count= number_of_tweets)
+            newListOfTweets = [tweet.full_text for tweet in tweets]
+            #print(newListOfTweets)
+            stringOfTweets = (" ").join(newListOfTweets)
         except:
             print("Tweepy error calling user_timeline")
 
-        newListOfTweets = [tweet.full_text for tweet in tweets]
-        #print(newListOfTweets)
-        stringOfTweets = (" ").join(newListOfTweets)
+
         return stringOfTweets
 
     def get_profile_pic(self):
@@ -93,6 +95,7 @@ class twitter:
         tuples = []
         lastTweetID = self.getLastTweetID()
         query = "@madlibbot1"
+        print("Attempting")
         # load tweets addressed to the bot
         try:
             requests = self.api.search(q = query, count = 100)
@@ -122,6 +125,7 @@ class twitter:
                     return tuples
                 # append tuple to usernames list
                 tuples.append((sendingUser, madlibUser, tweetID))
+
         return tuples
 
     def getLastTweetID(self):
