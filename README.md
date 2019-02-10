@@ -20,7 +20,7 @@
    you do not already have them.
 
 ## Install and Documentation
-   After installing dependencies, run install.sh to install Tweetsole. For bash:
+   After installing dependencies, run install.sh to install Twittermadlibs. For bash:
 
    $ sh install.sh
 
@@ -28,7 +28,7 @@
 
    $ sh docs.sh
 
-## Tweetsole App
+## Twittermadlibs App
 
    Twittermadlibs allows you to create mad libs from any public Twitter account.
    You can see what a Kanye West, Donald Trump, or Elon Musk mad libs
