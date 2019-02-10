@@ -28,7 +28,8 @@ def main():
         # see more info in twitter docs
         print("Getting")
         usernames = twitterInterface.getRequests()
-
+        usernames.append(("kanyewest", "realDonaldTrump", "0"))
+        usernames.append(("realDonaldTrump", "kanyewest", "0"))
         #[("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
         if(usernames is not None):
             for sendingUser, madlibUser, tweetID in usernames:
@@ -57,7 +58,8 @@ def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
     madlibGenerator = madlib(tweetDict, madlibFile, preFormat, postFormat)
     madlibStr = madlibGenerator.createMadlib()
     # "@sendingUser "madlib""
-    twitterInterface.postTweet(madlibStr, sendingUser, madlibUser, tweetID)
+    if(tweetID != 0):
+        twitterInterface.postTweet(madlibStr, sendingUser, madlibUser, tweetID)
     # print the string
     print(madlibStr)
 
