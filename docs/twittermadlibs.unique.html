@@ -12,6 +12,14 @@
     <p></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
@@ -33,9 +41,14 @@
     
 <tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="unique-__init__"><strong>__init__</strong></a>(self, tweets, user_args=1)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="unique-__init__"><strong>__init__</strong></a>(self, tweets)</dt><dd><tt>Sets&nbsp;up&nbsp;the&nbsp;list&nbsp;of&nbsp;tweets&nbsp;for&nbsp;<a href="#unique">unique</a><br>
+:param&nbsp;tweets:&nbsp;a&nbsp;string&nbsp;of&nbsp;tweets</tt></dd></dl>
 
-<dl><dt><a name="unique-getTweetList"><strong>getTweetList</strong></a>(self)</dt></dl>
+<dl><dt><a name="unique-cleanTweets"><strong>cleanTweets</strong></a>(self)</dt><dd><tt>Cleans&nbsp;a&nbsp;tweet&nbsp;up,&nbsp;removing&nbsp;words&nbsp;smaller&nbsp;than&nbsp;4<br>
+and&nbsp;words&nbsp;containing&nbsp;links<br>
+:return:&nbsp;a&nbsp;list&nbsp;of&nbsp;cleaned&nbsp;tweets</tt></dd></dl>
+
+<dl><dt><a name="unique-isInvalid"><strong>isInvalid</strong></a>(self, tweet)</dt></dl>
 
 <hr>
 Data descriptors defined here:<br>
