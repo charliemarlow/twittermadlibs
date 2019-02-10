@@ -39,7 +39,10 @@ class twitter:
 
         # 100 tweets to be extracted
         number_of_tweets=100
-        tweets = self.api.user_timeline(username,tweet_mode="extended", count= number_of_tweets)
+        try:
+            tweets = self.api.user_timeline(username,tweet_mode="extended", count= number_of_tweets)
+        except:
+            print("Tweepy error calling user_timeline")
 
         newListOfTweets = [tweet.full_text for tweet in tweets]
         #print(newListOfTweets)
@@ -58,7 +61,10 @@ class twitter:
         Posts a tweet for the bot
         '''
         finalTweet = "@" + sendingUser + " " + tweet + " (src: " + "@" + madlibUser + ")"
-        self.api.update_status(finalTweet, in_reply_to_status_id=tweetID)
+        try:
+            self.api.update_status(finalTweet, in_reply_to_status_id=tweetID)
+        except:
+            print("Tweepy error updating status")
 
     def getRequests(self):
         '''
@@ -88,7 +94,10 @@ class twitter:
         lastTweetID = self.getLastTweetID()
         query = "@madlibbot1"
         # load tweets addressed to the bot
-        requests = self.api.search(q = query, count = 100)
+        try:
+            requests = self.api.search(q = query, count = 100)
+        except:
+            print("tweepy error in search")
 
         if(requests is not None):
             # get tweet id, set new last id

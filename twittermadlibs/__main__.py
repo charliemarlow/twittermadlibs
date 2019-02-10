@@ -33,7 +33,7 @@ def main():
                 print(sendingUser)
                 generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
         print("sleeping")
-        time.sleep(600)
+        time.sleep(300)
 
 
 
