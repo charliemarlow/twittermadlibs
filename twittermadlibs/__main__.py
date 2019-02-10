@@ -19,13 +19,13 @@ def main():
     Each list is a different part of speech
     This dictionary is then passed to madlib which returns a finished madlib string
     '''
-    usernames = ["realDonaldTrump", "kanyewest"]
+    usernames = [("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
 
-    for user in usernames:
-        generateMadlibs(user)
+    for sendingUser, madlibUser, tweetID in usernames:
+        generateMadlibs(sendingUser, madlibUser, tweetID)
 
 
-def generateMadlibs(username):
+def generateMadlibs(sendingUser, madlibUser):
     # pass username to getTweets, return a list of words
     twitterInterface = pullTweets(username)
     tweets = twitterInterface.get_tweets()
@@ -44,6 +44,8 @@ def generateMadlibs(username):
     madlibGenerator = madlib(tweetDict, madlibFile, preFormat, postFormat)
     madlibStr = madlibGenerator.createMadlib()
 
+    # "@sendingUser "madlib""
+    twitterInterface.postTweet(tweet, sendingUser, madlibUser, tweetID)
     # print the string
     print(madlibStr)
 
