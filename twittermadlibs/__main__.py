@@ -23,10 +23,12 @@ def main():
     twitterInterface = twitter()
     # We need a requestTweets option that returns a list of 3tuple usernames
     # see more info in twitter docs
-    usernames = [("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
+    usernames = twitterInterface.getRequests()
 
+    #[("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
     if(usernames is not None):
         for sendingUser, madlibUser, tweetID in usernames:
+            print(sendingUser)
             generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
 
 
@@ -45,9 +47,8 @@ def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
     # pass the dictionary to create madlibs, return a string
     madlibGenerator = madlib(tweetDict, madlibFile, preFormat, postFormat)
     madlibStr = madlibGenerator.createMadlib()
-
     # "@sendingUser "madlib""
-    #twitterInterface.postTweet(tweet, sendingUser, madlibUser, tweetID)
+    twitterInterface.postTweet(madlibStr, sendingUser, madlibUser, tweetID)
     # print the string
     print(madlibStr)
 
