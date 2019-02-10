@@ -45,14 +45,21 @@ class madlib:
         for i, word in enumerate(wordList):
             if(len(word) > 0 and word[0] == "#"):
                 # remove hashtag from word
-                oldWord = word
                 word = word[1:]
+                oldWord = word
+                tempChar = ""
                 # get list of that part of speech
+                if(word[-1] in __import__('string').punctuation):
+                    tempChar = word[-1]
+                    word = word[:-1]
+                    print(word)
                 partOfSpeechList = self.wordsDict[word]
+
                 # get a random word
                 word = random.choice(partOfSpeechList)
                 # remove used word from the list
                 partOfSpeechList.remove(word)
+                word = word + tempChar
                 word = self.preFormat + word + self.postFormat
                 wordList[i] = word
 
