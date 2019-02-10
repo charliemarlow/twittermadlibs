@@ -16,8 +16,8 @@ class twitter:
 		reader = csv.reader(file)
 
 		if(not os.path.exists("lastTweetID.txt")):
-			file = open(abs_path + "/lastTweetID.txt","w+")
-		file.close()
+			lastIDFile = open(abs_path + "/lastTweetID.txt","w+")
+			lastIDFile.close()
 		#List order is: consumer_key, consumer_secret, access_key, access_secret
 		self.keys = list(reader)
 
@@ -55,14 +55,32 @@ class twitter:
 
 	def postTweet(self, tweet, sendingUser, madlibUser, tweetID):
 		self.api.update_status('@' + sendingUser + " " + tweet, in_reply_to_status_id=self.tweet_)
-	'''
+
 	def getRequests(self):
-		
+		'''
 		Returns a list of 3-tuples of requested tweet IDs
 		(sendingUser, madlibUser, tweetID)
 
+		Assume tweet is form  "@madlibbot1 @realDonaldTrump"
+		the sending user is madlibbot1
+		the at'ed user is realDonaldTrump
+		remove all @s before appending to the list
 
-		tweets = self.api.search("@madlibbot1", show_user=True)
-		for tweet in tweets:
-			if()
-	'''
+		1. load last tweet id from lastTweetID.txt
+		2. search for @madlibbot1
+			2. save first tweet id in lastTweetID.txt
+		3. for each tweet
+			1. get sendingUser
+			2. get the atted username
+			3. get the tweets ID
+			4. if the tweet ID == lastTweetID, return what's currently in the listOfTweets
+			5. create 3 tuple = (sendingUser, madlibUser, tweet ID)
+			6. reply_tweets.append(your_tuple)
+		3. return reply_tweets
+		'''
+
+
+if(__name__ == '__main__'):
+	twitterInterface = twitter()
+	# do tests here
+	twitterInterface.getRequests()

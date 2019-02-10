@@ -21,10 +21,13 @@ def main():
     '''
 
     twitterInterface = twitter()
+    # We need a requestTweets option that returns a list of 3tuple usernames
+    # see more info in twitter docs
     usernames = [("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
-    
-    for sendingUser, madlibUser, tweetID in usernames:
-        generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
+
+    if(usernames is not None):
+        for sendingUser, madlibUser, tweetID in usernames:
+            generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
 
 
 def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
@@ -33,10 +36,9 @@ def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
 
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
-    uniqueStr = uniqueParser.getTweetList()
-    unique2 = " ".join(uniqueStr)
+    uniqueStr = uniqueParser.cleanTweets()
     # pass refinedList to parser to get a dictionary
-    tweetBlob = TextBlob(unique2)
+    tweetBlob = TextBlob(uniqueStr)
     classifier = classifyWords(tweetBlob)
     tweetDict = classifier.createWordDictionary()
 
