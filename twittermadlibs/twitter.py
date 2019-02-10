@@ -57,7 +57,7 @@ class twitter:
         '''
         Posts a tweet for the bot
         '''
-        finalTweet = "@" + sendingUser + " " + tweet + " (sourced from: " + "@" + madlibUser + ")"
+        finalTweet = "@" + sendingUser + " " + tweet + " (src: " + "@" + madlibUser + ")"
         self.api.update_status(finalTweet, in_reply_to_status_id=tweetID)
 
     def getRequests(self):

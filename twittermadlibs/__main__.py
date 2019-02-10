@@ -4,6 +4,7 @@ from .madlib import madlib
 from .twitter import twitter
 from .unique import unique
 from textblob import TextBlob
+import time
 
 madlibFile  = "/../Madlibs_Templates/test.csv"
 preFormat   = ""
@@ -22,14 +23,19 @@ def main():
 
     twitterInterface = twitter()
     # We need a requestTweets option that returns a list of 3tuple usernames
-    # see more info in twitter docs
-    usernames = twitterInterface.getRequests()
+    while(True):
+        # see more info in twitter docs
+        usernames = twitterInterface.getRequests()
 
-    #[("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
-    if(usernames is not None):
-        for sendingUser, madlibUser, tweetID in usernames:
-            print(sendingUser)
-            generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
+        #[("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
+        if(usernames is not None):
+            for sendingUser, madlibUser, tweetID in usernames:
+                print(sendingUser)
+                generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
+        print("sleeping")
+        time.sleep(600)
+
+
 
 
 def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
