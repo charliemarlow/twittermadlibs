@@ -58,7 +58,7 @@ def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
     madlibGenerator = madlib(tweetDict, madlibFile, preFormat, postFormat)
     madlibStr = madlibGenerator.createMadlib()
     # "@sendingUser "madlib""
-    if(tweetID != 0):
+    if(int(tweetID) != 0):
         twitterInterface.postTweet(madlibStr, sendingUser, madlibUser, tweetID)
     # print the string
     print(madlibStr)

@@ -8,6 +8,14 @@ class unique:
         '''
         self.listOfTweets = tweets.split(" ")
 
+    def isInvalid(self, tweet):
+        invalidLength   = len(tweet) < 4
+        invalidChars    = (tweet.count(".") > 0 or tweet.count("@") > 0
+                            or tweet.count("%") > 0 or tweet.count("\"") > 0
+                            or tweet.count("\'") > 0)
+        invalidURL      = (tweet.count("http") > 0 or tweet.count("\\") > 0
+                            or tweet.count("https") > 0 or tweet.count("\/") > 0)
+        return (invalidLength or invalidChars or invalidURL)
 
 
     def cleanTweets(self):
@@ -16,13 +24,9 @@ class unique:
         and words containing links
         :return: a list of cleaned tweets
         '''
-        listCopy = self.listOfTweets
-        for tweet in self.listOfTweets :
-            if( len(tweet) < 4 or tweet.count(".") > 0
-            or tweet is None or tweet.count("@") > 0
-            or tweet.count("http") > 0 or tweet.count("%") > 0
-            or tweet.count("\\") > 0 or tweet.count("\/") > 0):
-                listCopy.remove(tweet)
+
+        listCopy = [tweet.strip(" ") for tweet in self.listOfTweets
+                    if (not self.isInvalid(tweet) and tweet is not None) ]
 
         tweetStr =  " ".join(listCopy)
         emoji_pattern = re.compile("["

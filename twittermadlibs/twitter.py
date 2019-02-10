@@ -62,6 +62,7 @@ class twitter:
         '''
         Posts a tweet for the bot
         '''
+
         finalTweet = "@" + sendingUser + " " + tweet + " (src: " + "@" + madlibUser + ")"
         try:
             self.api.update_status(finalTweet, in_reply_to_status_id=tweetID)
@@ -125,7 +126,6 @@ class twitter:
                     return tuples
                 # append tuple to usernames list
                 tuples.append((sendingUser, madlibUser, tweetID))
-
         return tuples
 
     def getLastTweetID(self):
