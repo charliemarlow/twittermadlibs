@@ -1,7 +1,7 @@
 import sys
 from .classifyWords import classifyWords
 from .madlib import madlib
-from .pullTweets import pullTweets
+from .twitter import twitter
 from .unique import unique
 from textblob import TextBlob
 
@@ -19,17 +19,17 @@ def main():
     Each list is a different part of speech
     This dictionary is then passed to madlib which returns a finished madlib string
     '''
+
+    twitterInterface = twitter()
     usernames = [("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
-
+    
     for sendingUser, madlibUser, tweetID in usernames:
-        generateMadlibs(sendingUser, madlibUser, tweetID)
+        generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
 
 
-def generateMadlibs(sendingUser, madlibUser):
+def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
     # pass username to getTweets, return a list of words
-    twitterInterface = pullTweets(username)
-    tweets = twitterInterface.get_tweets()
-    profileURL = twitterInterface.get_profile_pic()
+    tweets = twitterInterface.get_tweets(madlibUser)
 
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
@@ -45,7 +45,7 @@ def generateMadlibs(sendingUser, madlibUser):
     madlibStr = madlibGenerator.createMadlib()
 
     # "@sendingUser "madlib""
-    twitterInterface.postTweet(tweet, sendingUser, madlibUser, tweetID)
+    #twitterInterface.postTweet(tweet, sendingUser, madlibUser, tweetID)
     # print the string
     print(madlibStr)
 
