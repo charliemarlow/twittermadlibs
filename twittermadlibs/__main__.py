@@ -19,29 +19,26 @@ def main():
     Each list is a different part of speech
     This dictionary is then passed to madlib which returns a finished madlib string
     '''
-    print("in main")
-    # get username
-    '''
-    print("Enter a twitter username, no @")
-    username = input()
-    print("username is " + username)
-    '''
+    usernames = ["realDonaldTrump", "kanyewest"]
 
+    for user in usernames:
+        generateMadlibs(user)
+
+
+def generateMadlibs(username):
     # pass username to getTweets, return a list of words
-    twitterInterface = pullTweets("realDonaldTrump")
+    twitterInterface = pullTweets(username)
     tweets = twitterInterface.get_tweets()
     profileURL = twitterInterface.get_profile_pic()
 
     # unique takes TextBlob object as a param, returns new textblob
     uniqueParser = unique(tweets)
     uniqueStr = uniqueParser.getTweetList()
-    print(uniqueStr)
     unique2 = " ".join(uniqueStr)
     # pass refinedList to parser to get a dictionary
     tweetBlob = TextBlob(unique2)
     classifier = classifyWords(tweetBlob)
     tweetDict = classifier.createWordDictionary()
-    print(tweetDict)
 
     # pass the dictionary to create madlibs, return a string
     madlibGenerator = madlib(tweetDict, madlibFile, preFormat, postFormat)
@@ -49,7 +46,6 @@ def main():
 
     # print the string
     print(madlibStr)
-
 
 if __name__ == '__main__':
     main()

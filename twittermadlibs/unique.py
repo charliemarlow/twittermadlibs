@@ -5,8 +5,7 @@ class unique:
 		self.listOfTweets = tweets.split(" ")
 		for tweet in self.listOfTweets :
 			if( len(tweet) < 4):
-				print(tweet)
 				self.listOfTweets.remove(tweet)
-	
+
 	def getTweetList(self):
 		return self.listOfTweets

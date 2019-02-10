@@ -52,7 +52,6 @@ class madlib:
                 if(word[-1] in __import__('string').punctuation):
                     tempChar = word[-1]
                     word = word[:-1]
-                    print(word)
                 partOfSpeechList = self.wordsDict[word]
 
                 # get a random word
@@ -80,7 +79,5 @@ class madlib:
             reader = csv.reader(file)
             for row in reader:
                 madlibs = madlibs + row
-        madlibs = madlibs[:-1]
         madlibs = [list for list in madlibs if list is not '']
-        print(madlibs)
         return madlibs
