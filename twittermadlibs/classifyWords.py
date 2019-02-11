@@ -1,5 +1,5 @@
 from textblob import TextBlob
-
+from .unique import unique
 
 class classifyWords:
     '''
@@ -110,5 +110,9 @@ class classifyWords:
             argumentPOS = [word[0] for word in words if arg in word]
             # concatenate lists together
             partsOfSpeech = partsOfSpeech + argumentPOS
+        if(partsOfSpeech is not None):
+            for word in partsOfSpeech[:]:
+                if(len(word) < 4):
+                    partsOfSpeech.remove(word)
 
         return partsOfSpeech

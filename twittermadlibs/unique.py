@@ -7,13 +7,16 @@ class unique:
         Sets up the list of tweets for unique
         :param tweets: a string of tweets
         '''
+        self.stringOfTweets = tweets
         self.listOfTweets = tweets.split(" ")
 
     def isInvalid(self, tweet):
         invalidLength   = len(tweet) < 4
         invalidChars    = (tweet.count(".") > 0 or tweet.count("@") > 0
                             or tweet.count("%") > 0 or tweet.count("\"") > 0
-                            or tweet.count("\'") > 0)
+                            or tweet.count("\'") > 0 or tweet.count("\'") > 0
+                            or tweet.count("\"") > 0 or tweet.count("\;") > 0
+                            or tweet.count("\’") > 0 )
         invalidURL      = (tweet.count("http") > 0 or tweet.count("\\") > 0
                             or tweet.count("https") > 0 or tweet.count("\/") > 0)
         return (invalidLength or invalidChars or invalidURL)
@@ -25,11 +28,6 @@ class unique:
         and words containing links
         :return: a list of cleaned tweets
         '''
-
-        listCopy = [tweet.strip(" ") for tweet in self.listOfTweets
-                    if (not self.isInvalid(tweet) and tweet is not None) ]
-
-        tweetStr =  " ".join(listCopy)
         emoji_pattern = re.compile("["
                        u"\U0001F600-\U0001F64F"  # emoticons
                        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
@@ -42,5 +40,9 @@ class unique:
                        u"\u2640-\u2642"
                        "]+", flags=re.UNICODE)
 
-        tweetStr = emoji_pattern.sub(r'', tweetStr)
+        tweetsString = emoji_pattern.sub(r'', self.stringOfTweets)
+        listCopy = [tweet.strip(" ") for tweet in tweetsString.split(" ")]
+        listCopy2 = [tweet for tweet in listCopy if (not self.isInvalid(tweet) and tweet is not None) ]
+        tweetStr =  " ".join(listCopy2)
+
         return tweetStr
