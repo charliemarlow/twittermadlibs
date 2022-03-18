@@ -49,6 +49,7 @@ coverage.xml
 
 #Access Tokens
 *d.csv
+TwitterAcountCredentials.json
 
 # Translations
 *.mo

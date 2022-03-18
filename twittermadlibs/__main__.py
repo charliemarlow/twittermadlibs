@@ -6,10 +6,11 @@ from .unique import unique
 from textblob import TextBlob
 import time
 
-madlibFile  = "/../Madlibs_Templates/test.csv"
-preFormat   = ""
-postFormat  = ""
+madlibFile = "/../Madlibs_Templates/test.csv"
+preFormat = ""
+postFormat = ""
 sleepMinutes = 5
+
 
 def main():
     '''
@@ -28,23 +29,26 @@ def main():
         # see more info in twitter docs
         print("Getting")
         usernames = twitterInterface.getRequests()
-        for i in range(10):
-            usernames.append(("kanyewest", "realDonaldTrump", "0"))
-            usernames.append(("realDonaldTrump", "kanyewest", "0"))
-        #[("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
+
+        # TEST DATA
+        # for i in range(10):
+        #     usernames.append(("kanyewest", "realDonaldTrump", "0"))
+        #     usernames.append(("realDonaldTrump", "kanyewest", "0"))
+
+        # [("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
+        print(str(usernames))
         if(usernames is not None):
             for sendingUser, madlibUser, tweetID in usernames:
                 print(sendingUser)
-                generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface)
+                generateMadlibs(sendingUser, madlibUser,
+                                tweetID, twitterInterface)
         print("sleeping")
         time.sleep(sleepMinutes * 60)
 
 
-
-
 def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
     # pass username to getTweets, return a list of words
-    tweets = twitterInterface.get_tweets(madlibUser)
+    tweets = twitterInterface.getTweets(madlibUser)
     if(tweets is None):
         return
     # unique takes TextBlob object as a param, returns new textblob
@@ -63,6 +67,7 @@ def generateMadlibs(sendingUser, madlibUser, tweetID, twitterInterface):
         twitterInterface.postTweet(madlibStr, sendingUser, madlibUser, tweetID)
     # print the string
     print(madlibStr)
+
 
 if __name__ == '__main__':
     main()

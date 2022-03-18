@@ -2,8 +2,8 @@ import tweepy
 import csv
 import os
 
-class twitter:
 
+class twitter:
 
     def __init__(self):
         '''
@@ -12,16 +12,16 @@ class twitter:
         :param username: The Twitter handle for the user
         '''
         abs_path = os.path.abspath(os.path.dirname(__file__))
-        file = open( abs_path + "/../AccessKeysd.csv", 'r')
+        file = open(abs_path + "/../AccessKeysd.csv", 'r')
         reader = csv.reader(file)
         self.lastTweetFile = abs_path + "/lastTweetID.txt"
         if(not os.path.exists(self.lastTweetFile)):
-            lastIDFile = open(abs_path + "/lastTweetID.txt","w+")
+            lastIDFile = open(abs_path + "/lastTweetID.txt", "w+")
             lastIDFile.close()
-        #List order is: consumer_key, consumer_secret, access_key, access_secret
+        # List order is: consumer_key, consumer_secret, access_key, access_secret, bearer_token
         self.keys = list(reader)
 
-        #print(keys[0][2])  This is the access_key
+        # print(keys[0][2])  This is the access_key
 
         # Authorization to consumer key and consumer secret
         auth = tweepy.OAuthHandler(self.keys[0][0], self.keys[0][1])
@@ -32,55 +32,56 @@ class twitter:
         self.api = tweepy.API(auth)
 
     # Function to extract tweets
-    def get_tweets(self, username):
+    def getTweets(self, username):
         '''
         This will pull the first 100 tweets.
         '''
 
         # 100 tweets to be extracted
-        number_of_tweets=100
+        number_of_tweets = 100
         stringOfTweets = None
         try:
-            tweets = self.api.user_timeline(username,tweet_mode="extended", count= number_of_tweets)
+            tweets = self.api.user_timeline(
+                screen_name=username, tweet_mode="extended", count=number_of_tweets)
             newListOfTweets = [tweet.full_text for tweet in tweets]
-            #print(newListOfTweets)
+            # print(newListOfTweets)
             stringOfTweets = (" ").join(newListOfTweets)
-        except:
-            print("Tweepy error calling user_timeline")
-
+        except Exception as e:
+            print("Tweepy error calling user_timeline: " + str(e))
 
         return stringOfTweets
 
-    def get_profile_pic(self):
+    def getProfilePic(self, username):
         '''
         Will return the URL to the profile picture of the username.
         :return The URL to the profile picture.
         '''
-        return ("https://twitter.com/"+self.username+"/profile_image?size=original")
+        return ("https://twitter.com/"+username+"/profile_image?size=original")
 
     def postTweet(self, tweet, sendingUser, madlibUser, tweetID):
         '''
         Posts a tweet for the bot
         '''
 
-        finalTweet = "@" + sendingUser + " " + tweet + " (src: " + "@" + madlibUser + ")"
+        finalTweet = "@" + sendingUser + " " + \
+            tweet + " (src: " + "@" + madlibUser + ")"
         try:
             self.api.update_status(finalTweet, in_reply_to_status_id=tweetID)
-        except:
-            print("Tweepy error updating status")
+        except Exception as e:
+            print("Tweepy error updating status: " + str(e))
 
     def getRequests(self):
         '''
         Returns a list of 3-tuples of requested tweet IDs
         (sendingUser, madlibUser, tweetID)
 
-        Assume tweet is form  "@madlibbot1 @realDonaldTrump"
-        the sending user is madlibbot1
+        Assume tweet is form  "@BotLibz @realDonaldTrump"
+        the sending user is BotLibz
         the madlib user is realDonaldTrump
         remove all @s before appending to the list
 
         1. load last tweet id from lastTweetID.txt
-        2. search for @madlibbot1
+        2. search for @BotLibz
             2. save first tweet id in lastTweetID.txt
         3. for each tweet
             1. get sendingUser
@@ -95,15 +96,16 @@ class twitter:
         '''
         tuples = []
         lastTweetID = self.getLastTweetID()
-        query = "@madlibbot1"
+        query = "@BotLibz"
         print("Attempting")
         # load tweets addressed to the bot
         try:
-            requests = self.api.search(q = query, count = 100)
-        except:
-            print("tweepy error in search")
+            requests = self.api.search_tweets(q=query, count=100)
+        except Exception as e:
 
-        if(requests is not None):
+            print("tweepy error in search: " + str(e))
+
+        if(requests is not None and len(requests) is not 0):
             # get tweet id, set new last id
             newTweetID = requests[0]._json['id']
             self.setLastTweetID(newTweetID)
@@ -152,6 +154,7 @@ class twitter:
         file = open(self.lastTweetFile, 'w')
         file.write(str(id))
         file.close()
+
 
 # testing
 if(__name__ == '__main__'):
