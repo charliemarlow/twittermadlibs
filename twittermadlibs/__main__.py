@@ -36,7 +36,6 @@ def main():
         #     usernames.append(("realDonaldTrump", "kanyewest", "0"))
 
         # [("kanyewest", "realDonaldTrump", "12123"), ("realDonaldTrump", "kanyewest", "13313")]
-        print(str(usernames))
         if(usernames is not None):
             for sendingUser, madlibUser, tweetID in usernames:
                 print(sendingUser)
