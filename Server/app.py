@@ -1,6 +1,6 @@
 # save this as app.py
 from flask import Flask
-from .__main__ import main
+from twittermadlibs.__main__ import main
 
 app = Flask(__name__)
 
